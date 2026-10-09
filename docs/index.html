@@ -3,120 +3,402 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Harcamalarınızı çalışma saatine dönüştürerek, paranın gerçek değerini keşfedin">
-    <title>DayScore - Zamanını Değerlendir</title>
+    <meta name="description" content="DayScore - Günün Net Bilançosu. Gün içindeki mikro-olaylarını puanla, artılarını ve eksilerini topla, gününün gerçek net skorunu anında gör.">
+    <meta name="theme-color" content="#030718">
+    <title>DayScore – Günün Net Bilançosu</title>
+    
+    <!-- Open Graph / Meta -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="DayScore – Günün Net Bilançosu">
+    <meta property="og:description" content="Gün içindeki mikro-olaylarını puanla (+/-), gününün gerçek net skorunu ve karnesini anında gör.">
+    <meta property="og:image" content="./assets/icon.png">
+
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+    
     <link rel="stylesheet" href="./style.css">
+    <link rel="icon" type="image/png" href="./assets/icon.png">
 </head>
 <body>
-    <div class="container">
-        <header class="header">
-            <div class="logo">
-                <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
-                    <circle cx="16" cy="16" r="15" stroke="url(#gradient)" stroke-width="2"/>
-                    <path d="M16 8V16L20 20" stroke="url(#gradient)" stroke-width="2" stroke-linecap="round"/>
-                    <defs>
-                        <linearGradient id="gradient" x1="0" y1="0" x2="32" y2="32">
-                            <stop offset="0%" stop-color="#a78bfa"/>
-                            <stop offset="100%" stop-color="#ec4899"/>
-                        </linearGradient>
-                    </defs>
-                </svg>
-                <h1>DayScore</h1>
-            </div>
-            <p class="tagline">Paranın gerçek maliyetini keşfet</p>
-        </header>
+    <!-- Ambient Liquid Glow Background Orbs -->
+    <div class="ambient-glow orb-blue"></div>
+    <div class="ambient-glow orb-violet"></div>
+    <div class="ambient-glow orb-cyan"></div>
 
-        <section class="glass-card income-card">
-            <h2>Gelir Bilgilerin</h2>
-            <div class="input-group">
-                <div class="input-wrapper">
-                    <label for="monthlySalary">Aylık Maaş (₺)</label>
-                    <input type="number" id="monthlySalary" placeholder="30000" min="0" step="100">
-                </div>
-                <div class="input-wrapper">
-                    <label for="monthlyHours">Aylık Çalışma Saati</label>
-                    <input type="number" id="monthlyHours" placeholder="300" min="0" step="1">
-                </div>
-            </div>
+    <!-- Navigation Header -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="#" class="nav-brand">
+                <img src="./assets/icon.png" alt="DayScore Logo" class="brand-icon">
+                <span class="brand-name">DayScore</span>
+                <span class="brand-pill">v1.0</span>
+            </a>
+            
+            <nav class="nav-menu">
+                <a href="#simulator" class="nav-link">Canlı Simülatör</a>
+                <a href="#features" class="nav-link">Özellikler</a>
+                <a href="#how-it-works" class="nav-link">Nasıl Çalışır?</a>
+                <a href="./privacy_policy.html" class="nav-link">Gizlilik</a>
+            </nav>
 
-            <div class="hourly-rate-display" id="hourlyRateDisplay">
-                <div class="rate-label">Saatlik Kazancın</div>
-                <div class="rate-value" id="hourlyRate">--</div>
-            </div>
-        </section>
-
-        <section class="glass-card add-expense-card">
-            <h2>Yeni Harcama Ekle</h2>
-            <form id="expenseForm" class="expense-form">
-                <div class="input-group">
-                    <div class="input-wrapper flex-2">
-                        <label for="expenseName">Harcama</label>
-                        <input type="text" id="expenseName" placeholder="Konser bileti" required>
-                    </div>
-                    <div class="input-wrapper flex-1">
-                        <label for="expenseAmount">Tutar (₺)</label>
-                        <input type="number" id="expenseAmount" placeholder="5000" min="0" step="1" required>
-                    </div>
-                </div>
-                <button type="submit" class="btn-primary">
-                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                        <path d="M10 5V15M5 10H15" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <div class="nav-cta">
+                <a href="#simulator" class="btn-try">Hemen Dene</a>
+                <a href="https://apps.apple.com" target="_blank" class="btn-appstore" id="navAppStoreBtn">
+                    <svg viewBox="0 0 384 512" width="14" height="14" fill="currentColor">
+                        <path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-91.9-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-13.7 69.5-34.3z"/>
                     </svg>
-                    Harcama Ekle
-                </button>
-            </form>
-        </section>
+                    <span>App Store</span>
+                </a>
+            </div>
+        </div>
+    </header>
 
-        <section class="glass-card summary-card" id="summaryCard" style="display: none;">
-            <h2>Özet</h2>
-            <div class="summary-grid">
-                <div class="summary-item">
-                    <div class="summary-label">Toplam Harcama</div>
-                    <div class="summary-value" id="totalExpense">0 ₺</div>
+    <!-- Main Content Container -->
+    <main class="main-wrapper">
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <span class="pulse-dot"></span>
+                    <span>Günün Net Bilançosu • iOS için Yayında</span>
                 </div>
-                <div class="summary-item">
-                    <div class="summary-label">Toplam Çalışma Saati</div>
-                    <div class="summary-value highlight" id="totalHours">0 saat</div>
+                
+                <h1 class="hero-title">
+                    Gününü Puanla, <br>
+                    <span class="gradient-text">Gerçek Ritimini</span> Keşfet.
+                </h1>
+                
+                <p class="hero-subtitle">
+                    Her gün yüzlerce mikro-olay yaşarsın: bir kahve keyfi, uzayan bir toplantı, iyi bir spor seansı. 
+                    DayScore ile gününün artılarını ve eksilerini topla, net bilançonla gününü taçlandır.
+                </p>
+
+                <div class="hero-actions">
+                    <a href="#simulator" class="btn-primary-hero">
+                        <span>✨ Canlı Simülatörü Başlat</span>
+                    </a>
+                    <a href="./support.html" class="btn-secondary-hero">
+                        <span>Nasıl Çalışır?</span>
+                    </a>
                 </div>
-                <div class="summary-item">
-                    <div class="summary-label">Kalan Maaş</div>
-                    <div class="summary-value" id="remainingSalary">0 ₺</div>
+
+                <div class="hero-stats-strip">
+                    <div class="strip-item">
+                        <span class="strip-num">%100</span>
+                        <span class="strip-label">Cihaz İçi Gizlilik</span>
+                    </div>
+                    <div class="strip-divider"></div>
+                    <div class="strip-item">
+                        <span class="strip-num">0 Sn</span>
+                        <span class="strip-label">Hesap & Giriş Yok</span>
+                    </div>
+                    <div class="strip-divider"></div>
+                    <div class="strip-item">
+                        <span class="strip-num">±5</span>
+                        <span class="strip-label">Hassas Mikro-Puan</span>
+                    </div>
                 </div>
-                <div class="summary-item">
-                    <div class="summary-label">Maaşın %</div>
-                    <div class="summary-value" id="percentageUsed">0%</div>
+            </div>
+
+            <!-- Hero Floating Mascot & Visual Card -->
+            <div class="hero-visual">
+                <div class="mascot-card">
+                    <div class="mascot-glow"></div>
+                    <div class="mascot-container">
+                        <img src="./assets/octo.png" alt="DayScore Maskotu" class="octo-mascot-img" id="heroMascotImg">
+                        <div class="octo-shadow"></div>
+                    </div>
+
+                    <div class="floating-badge badge-top">
+                        <span class="badge-icon">☕️</span>
+                        <div class="badge-text">
+                            <strong>Kahve Keyfi</strong>
+                            <small>+2 Puan</small>
+                        </div>
+                    </div>
+
+                    <div class="floating-badge badge-bottom">
+                        <span class="badge-icon">🏃</span>
+                        <div class="badge-text">
+                            <strong>Spor Seansı</strong>
+                            <small>+4 Puan</small>
+                        </div>
+                    </div>
+
+                    <div class="hero-card-footer">
+                        <div class="footer-score-pill">
+                            <span class="status-indicator"></span>
+                            <span id="heroBannerTheme">NET POZİTİF (+6)</span>
+                        </div>
+                        <div class="footer-tagline">Harika Bir Gün! 🚀</div>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <section class="expenses-section" id="expensesSection" style="display: none;">
-            <h2 class="section-title">Harcamalarım</h2>
-            <div class="expenses-list" id="expensesList"></div>
+        <!-- Interactive Simulator Section -->
+        <section class="simulator-section" id="simulator">
+            <div class="section-header">
+                <div class="section-tag">İNTERAKTİF DENEYİM</div>
+                <h2 class="section-title">Bugünü Tarayıcında Puanla</h2>
+                <p class="section-subtitle">Aşağıdaki hızlı butonlara basarak veya kendi özel olayını girerek günün net bilançosunu anında oluştur.</p>
+            </div>
+
+            <div class="simulator-grid">
+                <!-- Left: Gauge & Daily Recap Card -->
+                <div class="sim-left-panel">
+                    <div class="glass-card gauge-card" id="gaugeContainerCard">
+                        <div class="card-header-bar">
+                            <div class="date-display" id="currentDateDisplay">BUGÜN, 10 EKİM</div>
+                            <div class="status-badge" id="dayStatusBadge">DENGEDE</div>
+                        </div>
+
+                        <!-- Gauge Visual -->
+                        <div class="gauge-wrapper">
+                            <svg class="gauge-svg" viewBox="0 0 240 240">
+                                <circle class="gauge-track" cx="120" cy="120" r="95"></circle>
+                                <circle class="gauge-progress" id="gaugeProgressArc" cx="120" cy="120" r="95"></circle>
+                            </svg>
+                            <div class="gauge-center-content">
+                                <div class="gauge-score-value" id="gaugeScoreNumber">0</div>
+                                <div class="gauge-score-label">NET GÜN SKORU</div>
+                            </div>
+                        </div>
+
+                        <!-- Theme Title & Message Card -->
+                        <div class="theme-banner" id="themeBanner">
+                            <div class="theme-title" id="themeTitle">Nötr & Dengeli ⚖️</div>
+                            <div class="theme-message" id="themeMessage">Artılar ve eksiler eşitlendi, gün dengede seyrediyor.</div>
+                        </div>
+
+                        <!-- Mini Stats Grid -->
+                        <div class="metrics-grid">
+                            <div class="metric-cell">
+                                <span class="metric-val" id="metricTotalEvents">0</span>
+                                <span class="metric-name">Toplam Olay</span>
+                            </div>
+                            <div class="metric-cell positive-cell">
+                                <span class="metric-val" id="metricPosEvents">0</span>
+                                <span class="metric-name">Pozitif (+)</span>
+                            </div>
+                            <div class="metric-cell negative-cell">
+                                <span class="metric-val" id="metricNegEvents">0</span>
+                                <span class="metric-name">Negatif (-)</span>
+                            </div>
+                        </div>
+
+                        <div class="card-actions">
+                            <button class="btn-reset" id="resetDayBtn" title="Tüm olayları temizler">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/>
+                                    <path d="M3 3v5h5"/>
+                                </svg>
+                                Günü Sıfırla
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: Quick Presets, Custom Add & Event Feed -->
+                <div class="sim-right-panel">
+                    <!-- Quick 1-Tap Presets -->
+                    <div class="glass-card presets-card">
+                        <div class="panel-subtitle">⚡️ HIZLI 1-TIK PRESETLER</div>
+                        <div class="presets-scroll" id="presetButtonsContainer">
+                            <!-- Populated dynamically via JS -->
+                        </div>
+                    </div>
+
+                    <!-- Custom Event Form -->
+                    <div class="glass-card add-card">
+                        <div class="panel-subtitle">➕ ÖZEL MİKRO-OLAY EKLE</div>
+                        <form id="addEventForm" class="add-event-form">
+                            <div class="form-row">
+                                <div class="form-group flex-2">
+                                    <label for="eventTitleInput">Olay Başlığı</label>
+                                    <input type="text" id="eventTitleInput" placeholder="Örn: Kitap okudum, Tartışma yaşadım..." required>
+                                </div>
+                                <div class="form-group flex-1">
+                                    <label for="eventCategorySelect">Kategori</label>
+                                    <select id="eventCategorySelect">
+                                        <option value="Kişisel & Keyif">☕️ Kişisel & Keyif</option>
+                                        <option value="İş / Üretim">💻 İş / Üretim</option>
+                                        <option value="Sağlık & Spor">🏃 Sağlık & Spor</option>
+                                        <option value="İlişkiler">💬 İlişkiler</option>
+                                        <option value="Zihin & Duygu">🧠 Zihin & Duygu</option>
+                                        <option value="Rutin & Günlük">📋 Rutin & Günlük</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!-- Score Pill Selector -->
+                            <div class="score-selector-wrapper">
+                                <label>Puan Değeri: <strong id="selectedScorePreview" class="score-tag-pos">+2</strong></label>
+                                <div class="score-pills-row">
+                                    <div class="pills-group neg-pills">
+                                        <button type="button" class="score-pill neg" data-score="-5">-5</button>
+                                        <button type="button" class="score-pill neg" data-score="-4">-4</button>
+                                        <button type="button" class="score-pill neg" data-score="-3">-3</button>
+                                        <button type="button" class="score-pill neg" data-score="-2">-2</button>
+                                        <button type="button" class="score-pill neg" data-score="-1">-1</button>
+                                    </div>
+                                    <div class="pills-divider"></div>
+                                    <div class="pills-group pos-pills">
+                                        <button type="button" class="score-pill pos" data-score="1">+1</button>
+                                        <button type="button" class="score-pill pos active" data-score="2">+2</button>
+                                        <button type="button" class="score-pill pos" data-score="3">+3</button>
+                                        <button type="button" class="score-pill pos" data-score="4">+4</button>
+                                        <button type="button" class="score-pill pos" data-score="5">+5</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="eventNoteInput">Ek Not (İsteğe Bağlı)</label>
+                                <input type="text" id="eventNoteInput" placeholder="Aklına gelen ekstra detaylar...">
+                            </div>
+
+                            <button type="submit" class="btn-submit-event" id="saveEventBtn">
+                                <span>Olayı Kaydet</span>
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- Events Timeline Feed -->
+                    <div class="glass-card feed-card">
+                        <div class="feed-header">
+                            <div class="panel-subtitle">📋 GÜNÜN OLAYLARI</div>
+                            <span class="events-count-pill" id="eventsCountBadge">0 Kayıt</span>
+                        </div>
+                        
+                        <div class="events-feed-list" id="eventsListContainer">
+                            <!-- Dynamically generated or Empty state -->
+                        </div>
+                    </div>
+                </div>
+            </div>
         </section>
 
-        <div class="empty-state" id="emptyState">
-            <svg width="120" height="120" viewBox="0 0 120 120" fill="none">
-                <circle cx="60" cy="60" r="50" stroke="url(#emptyGradient)" stroke-width="2" opacity="0.3"/>
-                <path d="M60 30V60L80 80" stroke="url(#emptyGradient)" stroke-width="3" stroke-linecap="round" opacity="0.5"/>
-                <defs>
-                    <linearGradient id="emptyGradient" x1="0" y1="0" x2="120" y2="120">
-                        <stop offset="0%" stop-color="#a78bfa"/>
-                        <stop offset="100%" stop-color="#ec4899"/>
-                    </linearGradient>
-                </defs>
-            </svg>
-            <h3>Henüz harcama eklemedin</h3>
-            <p>Yukarıdaki formdan harcama ekleyerek, her bir harcamanın kaç saatlik emeğe denk geldiğini görebilirsin!</p>
+        <!-- Features Grid Section -->
+        <section class="features-section" id="features">
+            <div class="section-header">
+                <div class="section-tag">ÖZELLİKLER</div>
+                <h2 class="section-title">Günün Ritmini Yönetmek İçin Tasarlandı</h2>
+                <p class="section-subtitle">DayScore, karmaşık alışkanlık takipçilerinin aksine sadece 5 saniyede günün gerçek durumunu ortaya koyar.</p>
+            </div>
+
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon-wrapper icon-mint">
+                        <span>⚡️</span>
+                    </div>
+                    <h3>Mikro-Olay Puanlaması</h3>
+                    <p>Büyük hedefler koyup tükenmek yerine gün içindeki küçük artı ve eksileri anında kaydet. Her anın bir değeri var.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon-wrapper icon-cyan">
+                        <span>🌊</span>
+                    </div>
+                    <h3>Canlı Sıvı Gösterge</h3>
+                    <p>Skorun değiştikçe yaşayan ve renk değiştiren Liquid Glass arayüzü ile enerjinin nereye aktığını görsel olarak hisset.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon-wrapper icon-violet">
+                        <span>📊</span>
+                    </div>
+                    <h3>Günün Karnesi & Analiz</h3>
+                    <p>Günün sonunda tek tıkla net bilançonun özetini çıkar, hangi kategorinin seni daha çok beslediğini keşfet.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon-wrapper icon-rose">
+                        <span>🔒</span>
+                    </div>
+                    <h3>Sıfır Takip, %100 Cihazda</h3>
+                    <p>Hesap açmak yok, sunucu yok, reklam yok. Tüm verilerin yalnızca senin telefonunda (Apple SwiftData) güvende kalır.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- How It Works Section -->
+        <section class="how-section" id="how-it-works">
+            <div class="section-header">
+                <div class="section-tag">İŞLEYİŞ</div>
+                <h2 class="section-title">Nasıl Çalışır?</h2>
+                <p class="section-subtitle">Sadece 3 basit adımda gününün net bilançosunu yakala.</p>
+            </div>
+
+            <div class="steps-flow">
+                <div class="flow-card">
+                    <div class="flow-step">1</div>
+                    <h4>Olayı Yaşa & Puanla</h4>
+                    <p>Bir kahve molası verdin (+2), trafikte sıkıştın (-3). Saniyeler içinde hızla puanla.</p>
+                </div>
+                <div class="flow-card">
+                    <div class="flow-step">2</div>
+                    <h4>Net Skoru Gör</h4>
+                    <p>Artılar ve eksiler toplanır, anlık kadranında gününün pozitif mi negatif mi olduğu parlar.</p>
+                </div>
+                <div class="flow-card">
+                    <div class="flow-step">3</div>
+                    <h4>Ritimini Yakala</h4>
+                    <p>Günün karnesiyle durumunu değerlendir, ertesi güne daha dengeli ve farkında adım at.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Final CTA Banner -->
+        <section class="cta-banner-section">
+            <div class="cta-banner-card">
+                <div class="cta-glow"></div>
+                <img src="./assets/octo.png" alt="DayScore Maskotu" class="cta-mascot">
+                <h2>Gününün Net Bilançosunu Yakala.</h2>
+                <p>DayScore iOS uygulamasını cihazına indir, günün mikro-olaylarını yönetmeye hemen başla.</p>
+                <div class="cta-btns">
+                    <a href="https://apps.apple.com" target="_blank" class="btn-appstore-large">
+                        <svg viewBox="0 0 384 512" width="20" height="20" fill="currentColor">
+                            <path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-91.9-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-13.7 69.5-34.3z"/>
+                        </svg>
+                        <div class="btn-text-block">
+                            <small>Download on the</small>
+                            <strong>App Store</strong>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-left">
+                <div class="footer-logo">
+                    <img src="./assets/icon.png" alt="DayScore Logo" width="28" height="28">
+                    <span>DayScore</span>
+                </div>
+                <p class="footer-desc">Günün Net Bilançosu • Gününü Puanla, Ritimini Keşfet.</p>
+            </div>
+            
+            <div class="footer-links">
+                <a href="#simulator">Canlı Simülatör</a>
+                <a href="#features">Özellikler</a>
+                <a href="./support.html">Destek & SSS</a>
+                <a href="./privacy_policy.html">Gizlilik Politikası</a>
+                <a href="mailto:ekones12@gmail.com">İletişim</a>
+            </div>
         </div>
+        
+        <div class="footer-bottom">
+            <p>© 2026 DayScore • Enes Koçak. Tüm hakları saklıdır.</p>
+        </div>
+    </footer>
 
-        <footer class="footer">
-            <p>Zamanın değerini bil, bilinçli harca ⏰</p>
-        </footer>
-    </div>
-
+    <!-- Scripts -->
     <script src="./app.js"></script>
 </body>
 </html>

@@ -1,51 +1,183 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="tr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Privacy Policy – DayScore</title>
+    <title>Gizlilik Politikası – DayScore</title>
+    <meta name="description" content="DayScore Gizlilik Politikası. Kişisel verilerinizin nasıl korunduğunu öğrenin.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-        body { font-family: Arial, sans-serif; margin: 20px; line-height: 1.6; }
-        h1, h2 { color: #333; }
-        a { color: #0066cc; }
+        :root {
+            --bg-color: #060919;
+            --card-bg: rgba(255, 255, 255, 0.04);
+            --card-border: rgba(255, 255, 255, 0.09);
+            --text-main: #f1f5f9;
+            --text-muted: #94a3b8;
+            --primary: #38bdf8;
+            --accent: #818cf8;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;
+            background-color: var(--bg-color);
+            background-image: 
+                radial-gradient(circle at 15% 15%, rgba(56, 189, 248, 0.12) 0%, transparent 40%),
+                radial-gradient(circle at 85% 75%, rgba(129, 140, 248, 0.10) 0%, transparent 45%);
+            color: var(--text-main);
+            line-height: 1.7;
+            padding: 40px 20px;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .nav-back {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            margin-bottom: 30px;
+            padding: 8px 16px;
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 999px;
+            backdrop-filter: blur(12px);
+            transition: all 0.2s ease;
+        }
+        .nav-back:hover {
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateX(-3px);
+        }
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 24px;
+            padding: 40px;
+            backdrop-filter: blur(16px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+        }
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 24px;
+        }
+        .brand img {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3);
+        }
+        h1 {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #fff;
+            letter-spacing: -0.02em;
+        }
+        .date {
+            color: var(--text-muted);
+            font-size: 0.88rem;
+            margin-bottom: 32px;
+        }
+        h2 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #fff;
+            margin: 28px 0 12px 0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        p {
+            color: var(--text-muted);
+            margin-bottom: 16px;
+            font-size: 0.98rem;
+        }
+        ul {
+            margin: 12px 0 20px 24px;
+            color: var(--text-muted);
+        }
+        li {
+            margin-bottom: 8px;
+        }
+        .highlight-box {
+            background: rgba(56, 189, 248, 0.08);
+            border: 1px solid rgba(56, 189, 248, 0.2);
+            border-radius: 16px;
+            padding: 20px;
+            margin: 24px 0;
+        }
+        .highlight-box p {
+            color: #e0f2fe;
+            margin: 0;
+            font-weight: 500;
+        }
+        footer {
+            margin-top: 40px;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
     </style>
 </head>
 <body>
+    <div class="container">
+        <a href="./index.html" class="nav-back">
+            ← Ana Sayfaya Dön
+        </a>
 
-<h1>Privacy Policy for DayScore</h1>
+        <div class="card">
+            <div class="brand">
+                <img src="./assets/icon.png" alt="DayScore Logo">
+                <div>
+                    <h1>Gizlilik Politikası</h1>
+                    <div class="date">Son Güncelleme: 10 Ekim 2026</div>
+                </div>
+            </div>
 
-<p>DayScore is provided as a free web application for users who want to understand the real cost of their spending in terms of time worked. This Privacy Policy explains how the app handles information and what data, if any, is collected during usage.</p>
+            <div class="highlight-box">
+                <p>🔒 <strong>Özet:</strong> DayScore hiçbir kişisel verinizi toplamaz, satmaz veya harici sunuculara göndermez. Tüm verileriniz yalnızca kendi cihazınızda (Apple SwiftData) yerel olarak saklanır.</p>
+            </div>
 
-<p>DayScore does not display advertisements and does not use advertising-related tracking technologies.</p>
+            <h2>1. Bilgi Toplama ve Kullanımı</h2>
+            <p>DayScore, kullanıcıların gün içindeki mikro-olaylarını puanlayarak günün net dengesini takip etmelerine yardımcı olan bağımsız bir iOS uygulamasıdır.</p>
+            <p>Uygulamamız:</p>
+            <ul>
+                <li>Kullanıcı hesabı, kayıt veya giriş gerektirmez.</li>
+                <li>İsim, e-posta, telefon veya kimlik bilgisi talep etmez.</li>
+                <li>Konum verilerinize erişmez.</li>
+                <li>Girdiğiniz olay başlıkları, puanlar ve notlar yalnızca cihazınızda saklanır.</li>
+            </ul>
 
-<h2>Information Collection and Use</h2>
-<p>The DayScore app does not collect, store, or share any personally identifiable information. No account creation, login, or personal data input is required to use the app.</p>
+            <h2>2. Cihaz İçi Veri Saklama (SwiftData)</h2>
+            <p>Eklediğiniz tüm mikro-olaylar ve skor geçmişiniz, Apple'ın modern <strong>SwiftData</strong> çerçevesi kullanılarak cihazınızın güvenli yerel depolama alanında tutulur. Bu veriler harici bir veritabanına veya sunucuya asla aktarılmaz. Uygulamayı cihazınızdan sildiğinizde yerel verileriniz de otomatik olarak silinir.</p>
 
-<p>All data, including income values, expense entries, and calculated statistics, is stored locally in the browser using local storage on your device. This data remains under your control and is not sent to a server by the application.</p>
+            <h2>3. Üçüncü Taraf Hizmetleri ve Reklamlar</h2>
+            <p>DayScore tamamen reklamsızdır. Uygulama içerisinde Google AdMob, Facebook SDK, üçüncü taraf analitik veya izleme (tracking) araçları <strong>kesinlikle bulunmamaktadır</strong>.</p>
 
-<h2>Local Storage</h2>
-<p>DayScore uses browser local storage to retain your entries so the app can continue where you left off. This data is stored only in your browser and is not used for marketing, analytics, or profiling.</p>
+            <h2>4. İzinler</h2>
+            <p>DayScore, çalışmak için mikrofon, kamera, rehber veya hassas cihaz izinleri talep etmez. Yalnızca buton etkileşimlerinde fiziksel geri bildirim sağlamak amacıyla standart Taptic Engine (Haptic Feedback) API'sini kullanır.</p>
 
-<h2>Cookies</h2>
-<p>The DayScore app does not use cookies or any cookie-based tracking technologies.</p>
+            <h2>5. Çocukların Gizliliği</h2>
+            <p>Uygulamamız hiçbir kullanıcıdan kişisel veri toplamadığı için 13 yaşın altındaki çocuklar dahil tüm yaş grupları için güvenlidir ve COPPA standartlarına tam uyumludur.</p>
 
-<h2>Permissions</h2>
-<p>DayScore may require limited browser permissions for normal operation, such as local data storage, but no personal or sensitive data is requested or collected.</p>
+            <h2>6. Değişiklikler</h2>
+            <p>Gizlilik politikamızda yapılabilecek gelecekteki güncellemeler bu sayfada yayımlanacaktır. Önemli bir değişiklik olması durumunda uygulama sürüm notlarında bilgi verilecektir.</p>
 
-<h2>Children’s Privacy</h2>
-<p>DayScore does not collect personal data from children under the age of 13, nor from any users. The app is designed to work without requiring personal information at any stage.</p>
+            <h2>7. İletişim</h2>
+            <p>Gizlilik politikamızla veya DayScore ile ilgili herhangi bir sorunuz, öneriniz veya geri bildiriminiz olursa doğrudan geliştirici ile iletişime geçebilirsiniz:</p>
+            <p>📧 <strong>E-posta:</strong> <a href="mailto:ekones12@gmail.com" style="color: var(--primary);">ekones12@gmail.com</a></p>
+        </div>
 
-<h2>Third-Party Services</h2>
-<p>DayScore does not integrate any third-party SDKs for advertising, analytics, or user tracking. No external service has access to user data through the app.</p>
-
-<h2>Security</h2>
-<p>Since DayScore does not collect or store personal information on a remote server, there is no central database of user data to expose. The app still follows standard best practices to keep local browser data secure.</p>
-
-<h2>Changes to This Privacy Policy</h2>
-<p>This Privacy Policy may be updated from time to time. Any changes will be posted on this page and will become effective as soon as they are available.</p>
-
-<h2>Contact</h2>
-<p>If you have questions or suggestions regarding this Privacy Policy, feel free to contact the developer.</p>
-
+        <footer>
+            <p>© 2026 DayScore • Enes Koçak. Tüm hakları saklıdır.</p>
+        </footer>
+    </div>
 </body>
 </html>

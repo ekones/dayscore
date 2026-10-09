@@ -1,55 +1,265 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="tr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DayScore – Support & How It Works</title>
+    <title>Destek & Kullanım Kılavuzu – DayScore</title>
+    <meta name="description" content="DayScore Destek ve Sıkça Sorulan Sorular. Günün net bilançosunu nasıl tutacağınızı öğrenin.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-        body { font-family: Arial, sans-serif; margin: 20px; line-height: 1.6; }
-        h1, h2 { color: #333; }
+        :root {
+            --bg-color: #060919;
+            --card-bg: rgba(255, 255, 255, 0.04);
+            --card-border: rgba(255, 255, 255, 0.09);
+            --text-main: #f1f5f9;
+            --text-muted: #94a3b8;
+            --primary: #38bdf8;
+            --mint: #34d399;
+            --rose: #fb7185;
+            --violet: #a78bfa;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;
+            background-color: var(--bg-color);
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(56, 189, 248, 0.12) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(167, 139, 250, 0.10) 0%, transparent 45%);
+            color: var(--text-main);
+            line-height: 1.7;
+            padding: 40px 20px;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .nav-back {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            margin-bottom: 30px;
+            padding: 8px 16px;
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 999px;
+            backdrop-filter: blur(12px);
+            transition: all 0.2s ease;
+        }
+        .nav-back:hover {
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateX(-3px);
+        }
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 24px;
+            padding: 40px;
+            backdrop-filter: blur(16px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+        }
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 28px;
+        }
+        .brand img {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3);
+        }
+        h1 {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #fff;
+            letter-spacing: -0.02em;
+        }
+        h2 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #fff;
+            margin: 32px 0 14px 0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        p {
+            color: var(--text-muted);
+            margin-bottom: 16px;
+            font-size: 0.98rem;
+        }
+        .steps {
+            display: grid;
+            gap: 16px;
+            margin: 20px 0 28px 0;
+        }
+        .step-item {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 16px;
+            padding: 18px 20px;
+            display: flex;
+            gap: 16px;
+            align-items: flex-start;
+        }
+        .step-num {
+            width: 32px;
+            height: 32px;
+            border-radius: 999px;
+            background: rgba(56, 189, 248, 0.2);
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 0.95rem;
+            flex-shrink: 0;
+        }
+        .step-content h3 {
+            font-size: 1.05rem;
+            color: #fff;
+            margin-bottom: 4px;
+            font-weight: 600;
+        }
+        .step-content p {
+            margin: 0;
+            font-size: 0.92rem;
+        }
+        .faq-item {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 20px 0;
+        }
+        .faq-item:last-child {
+            border-bottom: none;
+        }
+        .faq-q {
+            font-weight: 700;
+            color: #f8fafc;
+            font-size: 1.05rem;
+            margin-bottom: 8px;
+        }
+        .faq-a {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin: 0;
+        }
+        .contact-box {
+            background: linear-gradient(135deg, rgba(56, 189, 248, 0.1), rgba(167, 139, 250, 0.08));
+            border: 1px solid rgba(56, 189, 248, 0.25);
+            border-radius: 20px;
+            padding: 24px;
+            margin-top: 36px;
+            text-align: center;
+        }
+        .contact-box h3 {
+            color: #fff;
+            font-size: 1.2rem;
+            margin-bottom: 8px;
+        }
+        .contact-box p {
+            margin-bottom: 16px;
+        }
+        .btn-mail {
+            display: inline-block;
+            background: #38bdf8;
+            color: #04111d;
+            font-weight: 700;
+            padding: 12px 28px;
+            border-radius: 999px;
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+        .btn-mail:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(56, 189, 248, 0.35);
+        }
+        footer {
+            margin-top: 40px;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
     </style>
 </head>
 <body>
+    <div class="container">
+        <a href="./index.html" class="nav-back">
+            ← Ana Sayfaya Dön
+        </a>
 
-    <h1>How DayScore Works</h1>
+        <div class="card">
+            <div class="brand">
+                <img src="./assets/icon.png" alt="DayScore Logo">
+                <div>
+                    <h1>Destek & Nasıl Çalışır?</h1>
+                    <p style="margin: 0;">DayScore ile gününün gerçek net dengesini yakala.</p>
+                </div>
+            </div>
 
-    <p><strong>How much is your time really worth?</strong>
-    DayScore helps you understand the true value of your money by converting your expenses into the “time” it took you to earn them. Instead of seeing just a price tag, you see the real cost in hours of work.</p>
+            <h2>DayScore Nedir?</h2>
+            <p>DayScore, gün içerisinde yaşadığın irili ufaklı yüzlerce mikro-olayı pozitif (+1 ila +5) veya negatif (-1 ila -5) puanlarla kaydedip, günün sonunda tek bir net bilanço skoru görmeni sağlayan minimalist bir yaşam takip uygulamasıdır.</p>
 
-    <h2>Main Features</h2>
-    <ul>
-        <li><strong>Automatic Hourly Wage Calculation:</strong> Enter your salary and working hours—DayScore instantly calculates your hourly earnings.</li>
-        <li><strong>Time-Based Expense Tracking:</strong> Add expenses and see exactly how many hours of work they represent.</li>
-        <li><strong>Income & Expense Balance:</strong> Track your monthly earnings and spending in a simple dashboard.</li>
-        <li><strong>Minimal & Modern Interface:</strong> Focus on insights, not clutter.</li>
-    </ul>
+            <h2>3 Adımda Nasıl Kullanılır?</h2>
+            <div class="steps">
+                <div class="step-item">
+                    <div class="step-num">1</div>
+                    <div class="step-content">
+                        <h3>Mikro-Olayını Kaydet</h3>
+                        <p>Kahve içtin (+2), verimli çalıştın (+3), trafikte bunaldın (-3) veya spor yaptın (+4). Tek tıkla hızlı presetlerden seç veya kendi özel olayını oluştur.</p>
+                    </div>
+                </div>
+                <div class="step-item">
+                    <div class="step-num">2</div>
+                    <div class="step-content">
+                        <h3>Canlı Skorunu Takip Et</h3>
+                        <p>Skor göstergen gün boyunca dinamik olarak güncellenir. Gününün artıdamı yoksa eksidemi olduğunu anında renkli sıvı kadran üzerinden izle.</p>
+                    </div>
+                </div>
+                <div class="step-item">
+                    <div class="step-num">3</div>
+                    <div class="step-content">
+                        <h3>Günün Karnesini İncele</h3>
+                        <p>Gün sonunda "Harika Bir Gün", "Pozitifteyiz" veya "Zor Bir Gün" durum rozetleriyle günün net bilançosunu gör ve takvim geçmişinle kıyasla.</p>
+                    </div>
+                </div>
+            </div>
 
-    <h2>Why DayScore?</h2>
-    <p>A product might cost $100, but is it worth 5 hours of work?
-    DayScore makes financial decisions more meaningful by translating money into something more human: your time.</p>
+            <h2>Sıkça Sorulan Sorular (SSS)</h2>
+            <div class="faq-item">
+                <div class="faq-q">Verilerim nerede saklanıyor, başkası görebilir mi?</div>
+                <div class="faq-a">Kesinlikle hayır. Tüm verileriniz Apple'ın en son SwiftData teknolojisiyle %100 kendi cihazınızda saklanır. Harici sunucu veya bulut aktarımı yoktur.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q">İnternet bağlantısı gerekiyor mu?</div>
+                <div class="faq-a">Hayır! DayScore tamamen çevrimdışı (offline) çalışır. Metroda, uçakta veya dağda dilediğiniz gibi gününüzü puanlayabilirsiniz.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q">Puanlama mantığı nasıl çalışıyor?</div>
+                <div class="faq-a">Her olay -5 ile +5 arasında puanlanır. Günün skoru bu puanların matematiksel net toplamıdır. Örneğin +4 spor ve -2 toplantı yaşadıysan günün skoru +2 olur.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q">Uygulamada ücretli abonelik veya reklam var mı?</div>
+                <div class="faq-a">Hayır, DayScore tamamen reklamsız ve sade bir deneyim sunar.</div>
+            </div>
 
-    <h2>How to Use the App</h2>
-    <ol>
-        <li>Enter your monthly salary and weekly working hours.</li>
-        <li>Let DayScore calculate your hourly wage automatically.</li>
-        <li>Add any expense and instantly see the time cost behind it.</li>
-        <li>Track your monthly totals and analyze your spending behavior.</li>
-        <li>Use the insights to make smarter, time-aware financial decisions.</li>
-    </ol>
+            <div class="contact-box">
+                <h3>Sorunuz veya Bir Öneriniz mi Var?</h3>
+                <p>Uygulamayı geliştirmek için her türlü geri bildiriminize değer veriyoruz.</p>
+                <a href="mailto:ekones12@gmail.com" class="btn-mail">Geliştiriciye E-posta Gönder</a>
+            </div>
+        </div>
 
-    <h2>Tips</h2>
-    <ul>
-        <li>Use time-based cost comparison to decide if a purchase is worth your effort.</li>
-        <li>Regularly update your expenses to see accurate monthly insights.</li>
-        <li>Review your time-to-expense patterns to increase financial awareness.</li>
-    </ul>
-
-    <p>Take control of your time and money with DayScore.</p>
-
-    <hr>
-
-    <h2>Contact Us</h2>
-    <p>If you have any questions or suggestions about DayScore or its Privacy Policy, feel free to contact the developer.</p>
-
+        <footer>
+            <p>© 2026 DayScore • Enes Koçak. Tüm hakları saklıdır.</p>
+        </footer>
+    </div>
 </body>
 </html>

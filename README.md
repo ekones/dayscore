@@ -1,15 +1,40 @@
-# DayScore
+# DayScore – Günün Net Bilançosu (Web & Landing Page)
 
-A lightweight financial awareness app that converts expenses into the hours of work needed to earn them.
+DayScore iOS uygulamasının resmi tanıtım ve interaktif web simülatörü sayfası. 
 
-## Features
-- Calculate hourly rate from monthly salary and working hours
-- Add expenses and see the time cost behind them
-- Track total spend, remaining salary, and percentage used
-- Works as a static GitHub Pages app
+Canlı adres: [dayscore.eneskocak.com](https://dayscore.eneskocak.com)
 
-## Run locally
-Open `docs/index.html` in a browser.
+---
 
-## Deploy
-GitHub Pages can be configured to serve the `docs/` folder.
+## 🚀 Özellikler
+
+- **İnteraktif Günlük Skor Simülatörü**: Kullanıcılar uygulamayı indirmeden önce tarayıcı üzerinden mikro-olay ekleyebilir, puanlayabilir ve canlı sıvı göstergeyi test edebilir.
+- **Hızlı 1-Tık Presetler**: Kahve, spor, toplantı, trafik gibi günlük durumları tek tıkla ekleme.
+- **Dinamik Günün Karnesi**: Gerçek zamanlı olarak skor durumuna göre değişen Liquid Glass teması (Harika Bir Gün, Pozitifteyiz, Nötr & Dengeli, Zor Bir Gün).
+- **Apple App Store & HIG Uyumu**: Gizlilik Politikası (`privacy_policy.html`) ve Destek/SSS (`support.html`) sayfaları dahil eksiksiz App Store onay hazırlığı.
+- **Sıfır Bağımlılık & Hızlı Yüklenme**: Saf HTML5, modern Vanilla CSS (Liquid Glassmorphism) ve hafif Vanilla JavaScript.
+
+---
+
+## 💻 Yerel Geliştirme (Local Run)
+
+Herhangi bir statik sunucuyla veya doğrudan tarayıcıda açabilirsiniz:
+
+```bash
+# Python ile yerel sunucu başlatmak için:
+cd docs
+python3 -m http.server 8000
+# http://localhost:8000 adresini tarayıcıda açın
+```
+
+---
+
+## 🌐 Dağıtım (Deploy - GitHub Pages)
+
+Bu depo GitHub Pages ile `docs/` klasöründen yayınlanacak şekilde yapılandırılmıştır:
+- GitHub Repo Settings -> **Pages** -> Source: **Deploy from a branch** -> Branch: `main` / `/docs`
+- Custom Domain: `dayscore.eneskocak.com` (CNAME dosyası mevcuttur)
+
+---
+
+© 2026 DayScore • Enes Koçak. Tüm hakları saklıdır.
